@@ -8,8 +8,8 @@ import java.io.Serializable;
  * 描述: 示例模型
  */
 public class Model implements Serializable{
-    private static final long serialVersionUID = -8022957276104379230L;
 
+    private static final long serialVersionUID = -8145998523054809227L;
     private String bizCode;
 
     private String id;
@@ -29,4 +29,5 @@ public class Model implements Serializable{
     public void setId(String id) {
         this.id = id;
     }
+
 }

@@ -44,7 +44,6 @@ public class MainActivity extends FragmentActivity {
                 queryForOne.setText("onFailure:errorEvent=" + errorEvent + "message=" + message);
             }
         });
-
         api.queryForList(new ActionCallbackListener<List<Model>>() {
             @Override
             public void onProgress(long bytesWritten, long totalSize) {
