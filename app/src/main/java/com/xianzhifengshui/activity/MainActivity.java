@@ -11,6 +11,7 @@ import com.xianzhifengshui.api.ApiResponse;
 import com.xianzhifengshui.api.model.Model;
 import com.xianzhifengshui.api.net.ActionCallbackListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onSuccess(ApiResponse.Data data) {
-                queryForOne.setText("onSuccess:" + data.toString());
+                Model model = (Model) data.getObject();
             }
 
             @Override
@@ -52,7 +53,8 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onSuccess(ApiResponse.Data data) {
-                queryForList.setText("onSuccess:" + data.toString());
+                ArrayList<Model> list = data.getList();
+                queryForList.setText(list.toString());
             }
 
             @Override

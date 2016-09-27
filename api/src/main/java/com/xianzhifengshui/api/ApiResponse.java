@@ -1,5 +1,10 @@
 package com.xianzhifengshui.api;
 
+import android.app.Activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 作者: 陈冠希
  * 日期: 2016/9/12.
@@ -37,7 +42,7 @@ public class ApiResponse<T> {
     public class Data<N>{
         private int totalCount; //总条数
         private int pageSize;   //每页显示数量
-        private N list ;        //数组对象
+        private ArrayList<N> list ;        //数组对象
         private N object ;      //单个对象
         private int pageNum;    //总页数
 
@@ -57,11 +62,11 @@ public class ApiResponse<T> {
             this.pageSize = pageSize;
         }
 
-        public N getList() {
+        public ArrayList<N> getList() {
             return list;
         }
 
-        public void setList(N list) {
+        public void setList(ArrayList<N> list) {
             this.list = list;
         }
 
