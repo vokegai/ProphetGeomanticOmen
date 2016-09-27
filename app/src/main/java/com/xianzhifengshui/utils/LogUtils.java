@@ -1,5 +1,6 @@
 package com.xianzhifengshui.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
@@ -20,6 +21,7 @@ import java.util.Date;
  *     desc  :
  * </pre>
  */
+@SuppressLint("SimpleDateFormat")
 public class LogUtils {
 
     private static Boolean LOG_SWITCH = true; // 日志文件总开关
@@ -27,6 +29,7 @@ public class LogUtils {
     private static String LOG_TAG = "TAG"; // 默认的tag
     private static char LOG_TYPE = 'v';// 输入日志类型，v代表输出所有信息,w则只输出警告...
     private static int LOG_SAVE_DAYS = 7;// sd卡中日志文件的最多保存天数
+
 
     private final static SimpleDateFormat LOG_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 日志的输出格式
     private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("yyyy-MM-dd");// 日志文件格式
@@ -116,9 +119,9 @@ public class LogUtils {
     /**
      * 根据tag, msg和等级，输出日志
      *
-     * @param tag
-     * @param msg
-     * @param level
+     * @param tag tag
+     * @param msg msg
+     * @param level level
      */
     private static void log(String tag, String msg, Throwable tr, char level) {
         if (LOG_SWITCH) {

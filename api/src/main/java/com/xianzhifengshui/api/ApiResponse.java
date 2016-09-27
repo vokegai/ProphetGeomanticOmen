@@ -1,9 +1,7 @@
 package com.xianzhifengshui.api;
 
-import android.app.Activity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 作者: 陈冠希

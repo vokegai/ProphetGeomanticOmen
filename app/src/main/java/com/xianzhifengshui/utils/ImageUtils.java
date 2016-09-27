@@ -125,7 +125,9 @@ public class ImageUtils {
      * @return bitmap
      */
     public static Bitmap view2Bitmap(View view) {
-        return ConvertUtils.view2Bitmap(view);
+        //TODO view转Bitmap
+
+        return null;
     }
 
     /**
