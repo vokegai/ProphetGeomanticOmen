@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.xianzhifengshui.utils.ConstUtils;
 import com.xianzhifengshui.utils.KLog;
 import com.xianzhifengshui.utils.SPUtils;
 import com.xianzhifengshui.utils.ToastUtils;
+import com.xianzhifengshui.widget.dialog.NormalAlertDialog;
 
 
 /**
@@ -22,6 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     public boolean isActive;
     private boolean couldDoubleBackExit;
     private boolean pressedOnce;
+    private KProgressHUD progressHUD;
 
 
 
@@ -99,5 +102,21 @@ public class BaseActivity extends AppCompatActivity {
      */
     public void logJson(String json){
         KLog.json(TAG,json);
+    }
+
+    public void showWaiting(){
+        if (progressHUD == null) {
+            progressHUD = KProgressHUD.create(this)
+                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                    .setLabel("请稍候...")
+                    .setCancellable(false);
+        }
+        progressHUD.show();
+    }
+
+    public void closeWaiting(){
+        if (progressHUD != null) {
+            progressHUD.dismiss();
+        }
     }
 }

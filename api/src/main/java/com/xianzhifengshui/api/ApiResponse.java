@@ -65,15 +65,15 @@ public class ApiResponse<T> implements Serializable {
         }
 
         public T getList() {
-            return list;
+            return (T)list;
         }
 
         public void setList(T list) {
             this.list = list;
         }
 
-        public Object getObject() {
-            return object;
+        public T getObject() {
+            return (T)object;
         }
 
         public void setObject(T object) {

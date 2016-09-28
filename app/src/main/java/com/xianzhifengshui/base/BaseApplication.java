@@ -12,6 +12,7 @@ import com.xianzhifengshui.utils.XImageLoader;
  * 描述: 自定义应用入口
  */
 public class BaseApplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
