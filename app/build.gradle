@@ -25,7 +25,9 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':api')
     compile 'com.google.code.gson:gson:2.7'
+    compile 'dom4j:dom4j:20040902.021138'
     //    compile 'com.jakewharton:butterknife:8.4.0'
     //    apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile files('libs/universal-image-loader-1.9.5.jar')
+
 }

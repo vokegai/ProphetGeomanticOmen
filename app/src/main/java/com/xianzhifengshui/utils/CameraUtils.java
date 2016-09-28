@@ -1,11 +1,13 @@
 package com.xianzhifengshui.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
@@ -90,6 +92,7 @@ public class CameraUtils {
     /**
      * 获取[跳转至相册选择界面,并跳转至裁剪界面，默认可缩放裁剪区域]的Intent
      */
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static Intent getCameraIntent(Uri saveFileURI) {
         Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         return mIntent.putExtra(MediaStore.EXTRA_OUTPUT, saveFileURI);
@@ -164,7 +167,7 @@ public class CameraUtils {
      *
      * @param context 上下文
      * @param data    onActivityResult返回的Intent
-     * @return
+     * @return 图片路径
      */
     public static String getChoosedImagePath(Activity context, Intent data) {
         if (data == null) return null;

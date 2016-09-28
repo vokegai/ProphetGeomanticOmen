@@ -227,17 +227,17 @@ public class AppUtils {
             this.setUser(isUser);
         }
 
-//        @Override
-//        public String toString() {
-//            return getName() + "\n"
-//                    + getIcon() + "\n"
-//                    + getPackageName() + "\n"
-//                    + getPackagePath() + "\n"
-//                    + getVersionName() + "\n"
-//                    + getVersionCode() + "\n"
-//                    + isSD() + "\n"
-//                    + isUser() + "\n";
-//        }
+        @Override
+        public String toString() {
+            return getName() + "\n"
+                    + getIcon() + "\n"
+                    + getPackageName() + "\n"
+                    + getPackagePath() + "\n"
+                    + getVersionName() + "\n"
+                    + getVersionCode() + "\n"
+                    + isSD() + "\n"
+                    + isUser() + "\n";
+        }
     }
 
     /**

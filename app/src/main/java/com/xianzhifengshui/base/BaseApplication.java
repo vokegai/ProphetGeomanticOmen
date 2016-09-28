@@ -3,6 +3,7 @@ package com.xianzhifengshui.base;
 import android.app.Application;
 
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.xianzhifengshui.utils.KLog;
 import com.xianzhifengshui.utils.XImageLoader;
 
 /**
@@ -18,6 +19,7 @@ public class BaseApplication extends Application {
         //初始化XImageLoader
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
         XImageLoader.getInstance().init(configuration);
+        KLog.init(AppConfig.isDebug);
 
     }
 }

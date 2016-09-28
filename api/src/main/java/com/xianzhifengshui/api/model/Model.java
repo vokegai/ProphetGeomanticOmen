@@ -30,4 +30,11 @@ public class Model implements Serializable{
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Model{" +
+                "bizCode='" + bizCode + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }
