@@ -2,11 +2,13 @@ package com.xianzhifengshui.api;
 
 import android.text.TextUtils;
 
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.RequestParams;
 import com.xianzhifengshui.api.model.Model;
 import com.xianzhifengshui.api.net.ActionCallbackListener;
 import com.xianzhifengshui.api.net.HttpEngine;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -27,17 +29,20 @@ public class ApiImpl implements Api {
             return;
         }
         RequestParams params = new RequestParams();
-        params.put("id",id);
-        HttpEngine.getInstance().get(QUERY_FOR_ONE,params,callback);
+        params.put("id", id);
+        Type type = new TypeToken<Model>(){}.getType();
+        HttpEngine.getInstance().get(QUERY_FOR_ONE,params,type,callback);
     }
 
     @Override
     public void queryForList(ActionCallbackListener<List<Model>> callback) {
-        HttpEngine.getInstance().get(QUERY_FOR_LIST,null,callback);
+        Type type = new TypeToken<List<Model>>(){}.getType();
+        HttpEngine.getInstance().get(QUERY_FOR_LIST,null,type,callback);
     }
 
     @Override
     public void queryForPage(ActionCallbackListener<List<Model>> callback) {
-        HttpEngine.getInstance().get(QUERY_FOR_PAGE,null,callback);
+        Type type = new TypeToken<List<Model>>(){}.getType();
+        HttpEngine.getInstance().get(QUERY_FOR_PAGE,null,type,callback);
     }
 }

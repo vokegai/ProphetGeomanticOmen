@@ -1,15 +1,19 @@
 package com.xianzhifengshui.base;
 
+import android.annotation.TargetApi;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-import com.kaopiz.kprogresshud.KProgressHUD;
+import com.xianzhifengshui.ui.test.TestContract;
 import com.xianzhifengshui.utils.ConstUtils;
 import com.xianzhifengshui.utils.KLog;
 import com.xianzhifengshui.utils.SPUtils;
 import com.xianzhifengshui.utils.ToastUtils;
-import com.xianzhifengshui.widget.dialog.NormalAlertDialog;
+import com.xianzhifengshui.widget.dialog.NomalProgressDialog;
 
 
 /**
@@ -24,7 +28,7 @@ public class BaseActivity extends AppCompatActivity {
     public boolean isActive;
     private boolean couldDoubleBackExit;
     private boolean pressedOnce;
-    private KProgressHUD progressHUD;
+    private NomalProgressDialog progressDialog;
 
 
 
@@ -32,6 +36,22 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
+    }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus && Build.VERSION.SDK_INT >= 19){
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    );
+//            getWindow().
+//            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     private void init() {
@@ -90,10 +110,10 @@ public class BaseActivity extends AppCompatActivity {
 
     /**
      * 打印普通log日志
-     * @param text 日志内容
+     * @param objects 日志内容
      */
-    public void log(String text){
-        KLog.d(TAG, text);
+    public void log(Object... objects){
+        KLog.d(TAG, objects);
     }
 
     /**
@@ -101,22 +121,33 @@ public class BaseActivity extends AppCompatActivity {
      * @param json json字符串
      */
     public void logJson(String json){
-        KLog.json(TAG,json);
+        KLog.json(TAG, json);
     }
 
+    /**
+     * 显示progressDialog
+     */
     public void showWaiting(){
-        if (progressHUD == null) {
-            progressHUD = KProgressHUD.create(this)
-                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                    .setLabel("请稍候...")
-                    .setCancellable(false);
+        if (progressDialog == null) {
+            progressDialog = new NomalProgressDialog.Builder(this)
+                    .setCancleable(false)
+                    .build();
         }
-        progressHUD.show();
+        progressDialog.show();
     }
 
-    public void closeWaiting(){
-        if (progressHUD != null) {
-            progressHUD.dismiss();
+    /**
+     * 隐藏progressDialog
+     */
+    public void closeWait(){
+        if (progressDialog != null) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.dismiss();
+                }
+            },ConstUtils.SEC);
+
         }
     }
 }

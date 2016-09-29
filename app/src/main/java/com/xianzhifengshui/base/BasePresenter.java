@@ -1,0 +1,17 @@
+package com.xianzhifengshui.base;
+
+import com.xianzhifengshui.api.Api;
+import com.xianzhifengshui.api.ApiImpl;
+
+/**
+ * 作者: 陈冠希
+ * 日期: 2016/9/29.
+ * 描述: Presenter基类
+ */
+public class BasePresenter {
+    protected Api api;
+
+    public BasePresenter() {
+        this.api = new ApiImpl();
+    }
+}

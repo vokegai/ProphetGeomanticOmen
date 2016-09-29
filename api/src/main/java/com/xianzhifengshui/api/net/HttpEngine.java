@@ -1,14 +1,23 @@
 package com.xianzhifengshui.api.net;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.xianzhifengshui.api.ApiResponse;
+import com.xianzhifengshui.api.Data;
+import com.xianzhifengshui.api.model.Model;
+
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -42,7 +51,7 @@ public class HttpEngine {
         return instance;
     }
 
-    public  <T> void get(String method, RequestParams params, final ActionCallbackListener<T> callback){
+    public  <T>  void  get(String method, final RequestParams params, final Type typeOfClass ,final ActionCallbackListener<T> callback){
         String url = HOST + method;
         client.get(url, params, new TextHttpResponseHandler()  {
 
@@ -59,26 +68,50 @@ public class HttpEngine {
             }
 
             @Override
-            public void onSuccess(int i, Header[] headers, String s) {
-                Type type = new TypeToken<ApiResponse<T>>(){}.getType();
-                try {
-                    ApiResponse<T> response = json2Obj(s,type);
-                    if (response.isSuccess()){
+            public void onSuccess(int i, Header[] headers, String json) {
+                ApiResponse<T> response = json2Obj(json, typeOfClass);
+                if (response.isSuccess()){
                         callback.onSuccess(response.getData());
                     }else {
                         callback.onFailure(response.getStatusCode(),response.getStatus());
                     }
-
-                }catch (JsonSyntaxException e){
-                    callback.onFailure(JSON_SYNTAX_ERROR,JSON_SYNTAX_INFO);
-                }
             }
         });
     }
 
     private <T> ApiResponse<T> json2Obj(String json,Type typeOfT) throws JsonSyntaxException {
         Gson gson = new Gson();
-        return gson.fromJson(json,typeOfT);
+        ApiResponse<T> response = new ApiResponse<>();
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = parser.parse(json).getAsJsonObject();
+        if (jsonObject.has("statusCode")){
+            response.setStatusCode(jsonObject.get("statusCode").getAsInt());
+        }
+        if (jsonObject.has("status")){
+            response.setStatus(jsonObject.get("status").getAsString());
+        }
+        if (jsonObject.has("data")){
+            String jsonDataStr = jsonObject.get("data").toString();
+            Data<T> data = new Data<>();
+            JsonObject jsonData = parser.parse(jsonDataStr).getAsJsonObject();
+            if (jsonData.has("totalCount")){
+                data.setTotalCount(jsonData.get("totalCount").getAsInt());
+            }
+            if (jsonData.has("pageSize")){
+                data.setPageSize(jsonData.get("pageSize").getAsInt());
+            }
+            if (jsonData.has("pageNum")){
+                data.setPageNum(jsonData.get("pageNum").getAsInt());
+            }
+            if (jsonData.has("object")){
+                data.setObject((T) gson.fromJson(jsonData.get("object").toString(),typeOfT));
+            }
+            if (jsonData.has("list")){
+                data.setList((T) new Gson().fromJson(jsonData.get("list").toString(),typeOfT));
+            }
+            response.setData(data);
+        }
+        return response;
     }
 
 
