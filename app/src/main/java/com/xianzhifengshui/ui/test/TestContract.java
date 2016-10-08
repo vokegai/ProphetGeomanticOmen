@@ -11,16 +11,15 @@ import com.xianzhifengshui.base.IView;
  */
 public interface TestContract {
     interface View extends IView<Presenter>{
-        void showOne(String content);
-        void showList(String content);
-        void showListForPage(String content);
+        void showLoginSuccess(String message);
+        void showLoginFalure(String message);
+        void showGetMasterListSuccess(String message);
     }
 
     interface  Presenter extends IPresenter{
-        void getOne(String id);
+        void login(String userName,String password);
 
-        void getList();
+        void getMasterList(int pageNum,int pageSize);
 
-        void getListForPage();
     }
 }

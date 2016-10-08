@@ -9,4 +9,6 @@ public class AppConfig {
     public static boolean isDebug = true;
 
     public static String SP_NAME = "config";
+
+    public static int PAGE_SIZE = 10;
 }

@@ -4,16 +4,15 @@ import java.io.Serializable;
 
 /**
  * 作者: 陈冠希
- * 日期: 2016/9/29.
- * 描述: 通用数据模型
+ * 日期: 2016/10/8.
+ * 描述: 列表模型基类
  */
-public class Data<T> implements Serializable {
-    private static final long serialVersionUID = -2109574557259720322L;
+public class BaseListModel<T> implements Serializable{
+    private static final long serialVersionUID = 6303838440204152855L;
     private int totalCount; //总条数
     private int pageSize;   //每页显示数量
-    private T list ;  //数组对象
-    private T object ;      //单个对象
     private int pageNum;    //总页数
+    private T list;         //数组对象
 
     public int getTotalCount() {
         return totalCount;
@@ -31,22 +30,6 @@ public class Data<T> implements Serializable {
         this.pageSize = pageSize;
     }
 
-    public T getList() {
-        return list;
-    }
-
-    public void setList(T list) {
-        this.list = list;
-    }
-
-    public T getObject() {
-        return (T)object;
-    }
-
-    public void setObject(T object) {
-        this.object = object;
-    }
-
     public int getPageNum() {
         return pageNum;
     }
@@ -55,14 +38,21 @@ public class Data<T> implements Serializable {
         this.pageNum = pageNum;
     }
 
+    public T getList() {
+        return list;
+    }
+
+    public void setList(T list) {
+        this.list = list;
+    }
+
     @Override
     public String toString() {
-        return "Data{" +
+        return "BaseListModel{" +
                 "totalCount=" + totalCount +
                 ", pageSize=" + pageSize +
-                ", list=" + list +
-                ", object=" + object +
                 ", pageNum=" + pageNum +
+                ", list=" + list +
                 '}';
     }
 }

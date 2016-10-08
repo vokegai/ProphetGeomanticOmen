@@ -6,18 +6,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.xianzhifengshui.api.ApiResponse;
-import com.xianzhifengshui.api.Data;
-import com.xianzhifengshui.api.model.Model;
+import com.xianzhifengshui.api.des.DESUtils;
+import com.xianzhifengshui.api.des.Md5Utils;
 
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -28,7 +25,8 @@ import cz.msebera.android.httpclient.Header;
  * 描述: 引擎处理类
  */
 public class HttpEngine {
-    public final String HOST = "http://123.56.162.170/demo/";      //服务器主地址
+    private final String TAG = "HttpEngine";
+    public final String HOST = "http://123.56.162.170:8083/api/";      //服务器主地址
     private static final int JSON_SYNTAX_ERROR = -1;
     private static final String JSON_SYNTAX_INFO = "返回数据格式错误";
     private static AsyncHttpClient client;
@@ -51,8 +49,13 @@ public class HttpEngine {
         return instance;
     }
 
-    public  <T>  void  get(String method, final RequestParams params, final Type typeOfClass ,final ActionCallbackListener<T> callback){
+
+    public  <T>  void  get(String method, String ciphertext, final Type typeOfClass ,final ActionCallbackListener<T> callback){
         String url = HOST + method;
+        String sign = Md5Utils.md5s(DESUtils.decrypt(ciphertext));
+        RequestParams params = new RequestParams();
+        params.put("json", ciphertext);
+        params.put("sign",sign);
         client.get(url, params, new TextHttpResponseHandler()  {
 
 
@@ -64,17 +67,21 @@ public class HttpEngine {
 
             @Override
             public void onFailure(int i, Header[] headers, String s, Throwable throwable) {
-                callback.onFailure(i,throwable.getMessage());
+                Log.e(TAG, "network error:"+throwable.getMessage());
+                callback.onFailure(i,"网络不给力哦");
             }
 
             @Override
-            public void onSuccess(int i, Header[] headers, String json) {
+            public void onSuccess(int i, Header[] headers, String ciphertext) {
+                String json = DESUtils.decrypt(ciphertext);
                 ApiResponse<T> response = json2Obj(json, typeOfClass);
                 if (response.isSuccess()){
-                        callback.onSuccess(response.getData());
-                    }else {
-                        callback.onFailure(response.getStatusCode(),response.getStatus());
-                    }
+                    callback.onSuccess(response.getData());
+                }else if (response.getStatus().equals("success")){
+                    callback.onFailure(response.getStatusCode(),response.getMessage());
+                }else {
+                    Log.e(TAG, "network error:"+response.getMessage());
+                }
             }
         });
     }
@@ -92,23 +99,8 @@ public class HttpEngine {
         }
         if (jsonObject.has("data")){
             String jsonDataStr = jsonObject.get("data").toString();
-            Data<T> data = new Data<>();
+            T data = gson.fromJson(jsonDataStr,typeOfT);
             JsonObject jsonData = parser.parse(jsonDataStr).getAsJsonObject();
-            if (jsonData.has("totalCount")){
-                data.setTotalCount(jsonData.get("totalCount").getAsInt());
-            }
-            if (jsonData.has("pageSize")){
-                data.setPageSize(jsonData.get("pageSize").getAsInt());
-            }
-            if (jsonData.has("pageNum")){
-                data.setPageNum(jsonData.get("pageNum").getAsInt());
-            }
-            if (jsonData.has("object")){
-                data.setObject((T) gson.fromJson(jsonData.get("object").toString(),typeOfT));
-            }
-            if (jsonData.has("list")){
-                data.setList((T) new Gson().fromJson(jsonData.get("list").toString(),typeOfT));
-            }
             response.setData(data);
         }
         return response;

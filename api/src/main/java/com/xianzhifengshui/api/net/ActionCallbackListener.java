@@ -1,8 +1,5 @@
 package com.xianzhifengshui.api.net;
 
-import com.xianzhifengshui.api.ApiResponse;
-import com.xianzhifengshui.api.Data;
-
 /**
  * 作者: 陈冠希
  * 日期: 2016/9/12.
@@ -20,7 +17,7 @@ public interface ActionCallbackListener<T> {
      * 成功时调用
      * @param data 返回的数据
      */
-    void onSuccess(Data<T> data);
+    void onSuccess(T data);
 
     /**
      * 失败时调用

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">先知风水</string>
+    <string name="title_activity_login">登录</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

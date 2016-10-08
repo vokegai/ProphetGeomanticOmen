@@ -1,11 +1,12 @@
 package com.xianzhifengshui.ui.test;
 
-import com.xianzhifengshui.api.Data;
-import com.xianzhifengshui.api.model.Model;
+import com.xianzhifengshui.api.BaseListModel;
+import com.xianzhifengshui.api.model.User;
 import com.xianzhifengshui.api.net.ActionCallbackListener;
 import com.xianzhifengshui.base.BasePresenter;
+import com.xianzhifengshui.utils.KLog;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 作者: 陈冠希
@@ -22,81 +23,51 @@ public class TestPresenter extends BasePresenter implements TestContract.Present
 
     }
 
-    @Override
-    public void getOne(String id) {
 
-        api.queryForOne(id, new ActionCallbackListener<Model>() {
+    @Override
+    public void login(String userName, String password) {
+        api.userLogin(userName, password, new ActionCallbackListener<User>() {
             @Override
             public void onProgress(long bytesWritten, long totalSize) {
-                if (view.isActive())
-                    view.showWaitingDialog();
+                if (!view.isActive()){
+                    return;
+                }
+                view.showWaitingDialog();
             }
 
             @Override
-            public void onSuccess(Data<Model> data) {
-                view.showOne(data.toString());
-//                view.closeWaitingDialog();
-                getList();
+            public void onSuccess(User data) {
+                view.showLoginSuccess(data.toString());
+                view.closeWaitingDialog();
             }
 
             @Override
             public void onFailure(int errorEvent, String message) {
-                if (!view.isActive())
-                    return;
-                view.showTip(message);
+                view.showLoginFalure(message);
                 view.closeWaitingDialog();
             }
         });
     }
 
     @Override
-    public void getList() {
-        api.queryForList(new ActionCallbackListener<List<Model>>() {
+    public void getMasterList(int pageNum, int pageSize) {
+        api.masterList(pageNum, pageSize, new ActionCallbackListener<BaseListModel<ArrayList<User>>>() {
             @Override
             public void onProgress(long bytesWritten, long totalSize) {
-
+                view.showWaitingDialog();
             }
 
             @Override
-            public void onSuccess(Data<List<Model>> data) {
-                view.showList(data.toString());
-                getListForPage();
-            }
-
-            @Override
-            public void onFailure(int errorEvent, String message) {
-                if (!view.isActive()){
-                    return;
-                }
-                view.closeWaitingDialog();
-                view.showTip(message);
-            }
-        });
-    }
-
-    @Override
-    public void getListForPage() {
-        api.queryForPage(new ActionCallbackListener<List<Model>>() {
-            @Override
-            public void onProgress(long bytesWritten, long totalSize) {
-
-            }
-
-            @Override
-            public void onSuccess(Data<List<Model>> data) {
-                view.showListForPage(data.toString());
+            public void onSuccess(BaseListModel<ArrayList<User>> data) {
+                view.showGetMasterListSuccess(data.toString());
                 view.closeWaitingDialog();
             }
 
             @Override
             public void onFailure(int errorEvent, String message) {
-                if (!view.isActive()){
-                    return;
-                }
                 view.closeWaitingDialog();
                 view.showTip(message);
             }
         });
-
     }
 }

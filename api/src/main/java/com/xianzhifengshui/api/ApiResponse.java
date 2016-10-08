@@ -12,9 +12,10 @@ import java.util.Objects;
  */
 public class ApiResponse<T> implements Serializable {
     private static final long serialVersionUID = -5437048962915606356L;
-    private int statusCode;  //响应吗，100为成功
-    private String status;      //返回信息
-    private Data<T> data;       //返回数据
+    private int statusCode;  //响应吗，200为成功
+    private String status;   //返回状态 success or failure
+    private String message;  // 返回信息
+    private T data;       //返回数据
 
     public int getStatusCode() {
         return statusCode;
@@ -32,16 +33,24 @@ public class ApiResponse<T> implements Serializable {
         this.status = status;
     }
 
-    public Data<T> getData() {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
         return data;
     }
 
-    public void setData(Data<T> data) {
+    public void setData(T data) {
         this.data = data;
     }
 
     public boolean isSuccess(){
-        return statusCode == 100;
+        return statusCode == 200;
     }
 
 

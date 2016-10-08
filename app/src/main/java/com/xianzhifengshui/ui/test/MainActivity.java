@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.xianzhifengshui.R;
+import com.xianzhifengshui.base.AppConfig;
 import com.xianzhifengshui.base.BaseActivity;
+import com.xianzhifengshui.utils.KLog;
 
 
 /**
@@ -25,7 +27,7 @@ public class MainActivity extends BaseActivity implements TestContract.View{
         setContentView(R.layout.activity_main);
         initViews();
         presenter = new TestPresenter(this);
-        presenter.getOne("2");
+        presenter.getMasterList(1, AppConfig.PAGE_SIZE);
     }
 
     private void initViews(){
@@ -34,20 +36,7 @@ public class MainActivity extends BaseActivity implements TestContract.View{
         queryForPage = (TextView) findViewById(R.id.text_main_queryForPage);
     }
 
-    @Override
-    public void showOne(String content) {
-        queryForOne.setText(content);
-    }
 
-    @Override
-    public void showList(String content) {
-        queryForList.setText(content);
-    }
-
-    @Override
-    public void showListForPage(String content) {
-        queryForPage.setText(content);
-    }
 
     @Override
     public void setPresenter(TestContract.Presenter presenter) {
@@ -73,5 +62,20 @@ public class MainActivity extends BaseActivity implements TestContract.View{
     @Override
     public void showTip(String text) {
         this.showToast(text);
+    }
+
+    @Override
+    public void showLoginSuccess(String message) {
+        KLog.d(TAG,message);
+    }
+
+    @Override
+    public void showLoginFalure(String message) {
+        KLog.d(TAG,message);
+    }
+
+    @Override
+    public void showGetMasterListSuccess(String message) {
+        KLog.d(TAG,message);
     }
 }

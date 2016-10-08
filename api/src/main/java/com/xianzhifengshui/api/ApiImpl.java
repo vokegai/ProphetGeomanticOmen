@@ -1,15 +1,15 @@
 package com.xianzhifengshui.api;
 
-import android.text.TextUtils;
-
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.RequestParams;
-import com.xianzhifengshui.api.model.Model;
+import com.xianzhifengshui.api.des.DESUtils;
+import com.xianzhifengshui.api.model.User;
 import com.xianzhifengshui.api.net.ActionCallbackListener;
 import com.xianzhifengshui.api.net.HttpEngine;
 
 import java.lang.reflect.Type;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * 作者: 陈冠希
@@ -17,32 +17,49 @@ import java.util.List;
  * 描述: Api实现类
  */
 public class ApiImpl implements Api {
+    private final String TAG = "ApiImpl";
     public final int PARAM_NULL = -2;
+    private LinkedHashMap<String,String> paramsMap;
 
+    public ApiImpl(){
+        paramsMap = new LinkedHashMap<>();
+    }
 
-    @Override
-    public void queryForOne(String id, ActionCallbackListener<Model> callback) {
-        if(TextUtils.isEmpty(id)){
-            if (callback != null) {
-                callback.onFailure(PARAM_NULL,"id不能为空");
-            }
-            return;
-        }
-        RequestParams params = new RequestParams();
-        params.put("id", id);
-        Type type = new TypeToken<Model>(){}.getType();
-        HttpEngine.getInstance().get(QUERY_FOR_ONE,params,type,callback);
+    /**
+     * 参数加密
+     * @param map 要传的参数
+     * @return 加密后的字符串
+     */
+    private String map2Ciphertext(LinkedHashMap<String,String> map){
+        Gson gson = new Gson();
+        LinkedHashMap<String,String> resultMap = new LinkedHashMap();
+        //城市代码:北京（110000）;上海（200000）；其他待定
+        resultMap.put("cityCode","110000");
+        //设备类型:安卓传android；苹果传ios；pc端传pc，微信端传weixin，M站传mobile
+        resultMap.put("deviceType", "android");
+        resultMap.putAll(map);
+        String json = gson.toJson(resultMap);
+        return DESUtils.encrypt(json);
+
     }
 
     @Override
-    public void queryForList(ActionCallbackListener<List<Model>> callback) {
-        Type type = new TypeToken<List<Model>>(){}.getType();
-        HttpEngine.getInstance().get(QUERY_FOR_LIST,null,type,callback);
+    public void userLogin(String userName, String passWord,ActionCallbackListener<User> callback) {
+        paramsMap.clear();
+        paramsMap.put("username", userName);
+        paramsMap.put("password",passWord);
+        HttpEngine.getInstance().get(USER_LOGIN, map2Ciphertext(paramsMap) ,User.class,callback);
     }
 
     @Override
-    public void queryForPage(ActionCallbackListener<List<Model>> callback) {
-        Type type = new TypeToken<List<Model>>(){}.getType();
-        HttpEngine.getInstance().get(QUERY_FOR_PAGE,null,type,callback);
+    public void masterList(int pageNum, int pageSize, ActionCallbackListener<BaseListModel<ArrayList<User>>> callback) {
+        paramsMap.clear();
+        paramsMap.put("pageNum", String.valueOf(pageNum));
+        paramsMap.put("pageSize",String.valueOf(pageSize));
+        Type type = new TypeToken<BaseListModel<ArrayList<User>>>(){}.getType();
+        HttpEngine.getInstance().get(MASTER_LIST,map2Ciphertext(paramsMap),type,callback);
+
     }
+
+
 }

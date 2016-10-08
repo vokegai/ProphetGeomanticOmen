@@ -1,9 +1,9 @@
 package com.xianzhifengshui.api;
 
-import com.xianzhifengshui.api.model.Model;
+import com.xianzhifengshui.api.model.User;
 import com.xianzhifengshui.api.net.ActionCallbackListener;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 作者: 陈冠希
@@ -11,33 +11,23 @@ import java.util.List;
  * 描述: Api接口
  */
 public interface Api {
-    String QUERY_FOR_ONE = "queryForOne";   //单个对象
-
-    String QUERY_FOR_LIST = "queryForList"; //列表
-
-    String QUERY_FOR_PAGE = "queryForPage"; //分页列表
+    String USER_LOGIN = "user/login"; //用户登录接口
+    String MASTER_LIST = "master/list"; //获取大师列表接口
 
     /**
-     * 测试请求单个对象
-     * @param id 对象id
-     * @param callback 回调监听器
+     * 调用本接口验证用户登录操作
+     * @param userName 用户名
+     * @param passWord 登录密码
+     * @param callback 回调
      */
-    void queryForOne(String id,ActionCallbackListener<Model> callback);
+    void userLogin(String userName,String passWord,ActionCallbackListener<User> callback);
 
     /**
-     * 测试请求列表
-     * @param callback 回调监听器
+     * 调用本接口获取大师列表数据
+     * @param pageNum 当前第几页
+     * @param pageSize 每页最多显示多少条
+     * @param callback 回调
      */
-    void queryForList(ActionCallbackListener<List<Model>> callback);
-
-    /**
-     * 测试请求分页列表
-     * @param callback 回调监听器
-     */
-    void queryForPage(ActionCallbackListener<List<Model>> callback);
-
-
-
-
+    void masterList(int pageNum,int pageSize,ActionCallbackListener<BaseListModel<ArrayList<User>>> callback);
 
 }
