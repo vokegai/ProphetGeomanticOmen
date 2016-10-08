@@ -54,6 +54,7 @@ public class TestPresenter extends BasePresenter implements TestContract.Present
         api.masterList(pageNum, pageSize, new ActionCallbackListener<BaseListModel<ArrayList<User>>>() {
             @Override
             public void onProgress(long bytesWritten, long totalSize) {
+                if (view.isActive())
                 view.showWaitingDialog();
             }
 

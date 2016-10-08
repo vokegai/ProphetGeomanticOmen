@@ -58,8 +58,8 @@ public class NomalProgressDialog {
     public static class Builder{
         private final String DEFAULT_LABEL = "请稍后...";
         private final int DEFAULT_TEXT_SIZE = 11;
-        private final float DEFAULT_HEIGHT = 0.25f;
-        private final float DEFAULT_WIDTH = 0.25f;
+        private final float DEFAULT_HEIGHT = 0.30f;
+        private final float DEFAULT_WIDTH = 0.30f;
 
         private String labelText;
         private int labelTextSize;
