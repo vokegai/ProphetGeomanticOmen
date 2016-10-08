@@ -5,6 +5,7 @@ import android.app.Application;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.xianzhifengshui.utils.KLog;
 import com.xianzhifengshui.utils.XImageLoader;
+import com.zhy.autolayout.config.AutoLayoutConifg;
 
 /**
  * 作者: 陈冠希
@@ -20,7 +21,10 @@ public class BaseApplication extends Application {
         //初始化XImageLoader
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
         XImageLoader.getInstance().init(configuration);
+        //日志开关
         KLog.init(AppConfig.isDebug);
+        //设置支持autoLayout
+        AutoLayoutConifg.getInstance().useDeviceSize();
 
     }
 }

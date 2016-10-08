@@ -1,19 +1,14 @@
 package com.xianzhifengshui.base;
 
-import android.annotation.TargetApi;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
-import com.xianzhifengshui.ui.test.TestContract;
 import com.xianzhifengshui.utils.ConstUtils;
 import com.xianzhifengshui.utils.KLog;
 import com.xianzhifengshui.utils.SPUtils;
 import com.xianzhifengshui.utils.ToastUtils;
 import com.xianzhifengshui.widget.dialog.NomalProgressDialog;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 
 /**
@@ -21,7 +16,7 @@ import com.xianzhifengshui.widget.dialog.NomalProgressDialog;
  * 日期: 2016/9/28.
  * 描述: 自定义Activity基类
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AutoLayoutActivity {
     protected String TAG;
     public BaseApplication app;
     public SPUtils sp;
