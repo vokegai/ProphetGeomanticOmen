@@ -24,16 +24,23 @@ public class MainActivity extends BaseActivity implements TestContract.View{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         initViews();
         presenter = new TestPresenter(this);
         presenter.getMasterList(1, AppConfig.PAGE_SIZE);
     }
 
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected boolean isNeedToolbar() {
+        return false;
+    }
+
     private void initViews(){
-        queryForOne = (TextView) findViewById(R.id.text_main_queryForOne);
-        queryForList = (TextView) findViewById(R.id.text_main_queryForList);
-        queryForPage = (TextView) findViewById(R.id.text_main_queryForPage);
+
     }
 
 

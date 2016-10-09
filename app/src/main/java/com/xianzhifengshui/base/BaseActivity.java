@@ -2,11 +2,17 @@ package com.xianzhifengshui.base;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
 
+import com.xianzhifengshui.R;
 import com.xianzhifengshui.utils.ConstUtils;
 import com.xianzhifengshui.utils.KLog;
 import com.xianzhifengshui.utils.SPUtils;
 import com.xianzhifengshui.utils.ToastUtils;
+import com.xianzhifengshui.widget.auto.AutoToolbar;
 import com.xianzhifengshui.widget.dialog.NomalProgressDialog;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -16,23 +22,36 @@ import com.zhy.autolayout.AutoLayoutActivity;
  * 日期: 2016/9/28.
  * 描述: 自定义Activity基类
  */
-public class BaseActivity extends AutoLayoutActivity {
+public abstract   class BaseActivity extends AutoLayoutActivity {
     protected String TAG;
     public BaseApplication app;
     public SPUtils sp;
     public boolean isActive;
     private boolean couldDoubleBackExit;
     private boolean pressedOnce;
+    private boolean needToolbar = true;
     private NomalProgressDialog progressDialog;
+
+    protected Toolbar toolbar;
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getContentLayoutId());
         init();
+        if (needToolbar){
+            initToolbar();
+        }
+
     }
 
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+    }
 
 
 
@@ -40,7 +59,13 @@ public class BaseActivity extends AutoLayoutActivity {
         TAG = getClass().getSimpleName();
         sp = new SPUtils(this,AppConfig.SP_NAME);
         app = (BaseApplication) this.getApplication();
+        needToolbar = isNeedToolbar();
     }
+
+
+    protected abstract int getContentLayoutId();
+
+    protected abstract boolean isNeedToolbar();
 
     @Override
     protected void onStart() {
@@ -123,13 +148,9 @@ public class BaseActivity extends AutoLayoutActivity {
      */
     public void closeWait(){
         if (progressDialog != null) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressDialog.dismiss();
-                }
-            },ConstUtils.SEC);
-
+            progressDialog.dismiss();
         }
     }
+
+
 }

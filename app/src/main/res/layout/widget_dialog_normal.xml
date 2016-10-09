@@ -13,7 +13,7 @@
         android:background="@drawable/shape_white_corner8"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="32px"
         >
 
         <TextView
@@ -23,27 +23,27 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:lines="1"
-            android:textSize="16sp"
+            android:textSize="32px"
             />
 
         <TextView
             android:id="@+id/dialog_normal_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"/>
+            android:textSize="28px"/>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1px"
         android:layout_weight="0"
         android:background="@color/gray"/>
 
     <Button
         android:id="@+id/dialog_normal_midbtn"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="72px"
         android:layout_weight="0"
         android:background="@drawable/selector_widget_dialog_midbtn"
         android:gravity="center"
@@ -65,23 +65,23 @@
             android:background="@drawable/selector_widget_dialog_leftbtn"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:textSize="28px"/>
 
         <TextView
             android:id="@+id/dialog_normal_line"
-            android:layout_width="0.5dp"
+            android:layout_width="1px"
             android:layout_height="match_parent"
             android:background="@color/gray"/>
 
         <Button
             android:id="@+id/dialog_normal_rightbtn"
             android:layout_width="wrap_content"
-            android:layout_height="38dp"
+            android:layout_height="72px"
             android:layout_weight="1"
             android:background="@drawable/selector_widget_dialog_rightbtn"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:textSize="28px"/>
 
     </LinearLayout>
 
