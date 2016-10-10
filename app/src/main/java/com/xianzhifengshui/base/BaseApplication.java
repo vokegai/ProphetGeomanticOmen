@@ -23,8 +23,6 @@ public class BaseApplication extends Application {
         XImageLoader.getInstance().init(configuration);
         //日志开关
         KLog.init(AppConfig.isDebug);
-        //设置支持autoLayout
-        AutoLayoutConifg.getInstance().useDeviceSize();
 
     }
 }

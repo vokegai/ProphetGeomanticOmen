@@ -1,8 +1,14 @@
 package com.xianzhifengshui.base;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.xianzhifengshui.R;
 import com.xianzhifengshui.utils.SPUtils;
 
 
@@ -11,18 +17,78 @@ import com.xianzhifengshui.utils.SPUtils;
  * 日期: 2016/9/29.
  * 描述: 自定义Fragment基类
  */
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
     protected String TAG;
     protected BaseActivity activity;
     protected SPUtils sp;
+    protected boolean needToolBar = true;
+
+    protected View rootView;
+    protected Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+        initData();
+
+    }
+
+    private void init() {
         TAG = getClass().getSimpleName();
         activity = (BaseActivity) getActivity();
         sp = activity.sp;
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (rootView == null) {
+            rootView = inflater.inflate(getContentLayoutId(),container,false);
+        }
+        ViewGroup parent = (ViewGroup) rootView.getParent();
+        if (parent != null) {
+            parent.removeView(rootView);
+        }
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view,Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initViews();
+        if (needToolBar){
+            initToolbar();
+        }
+    }
+
+    /**
+     * 初始化View
+     */
+    protected abstract void initViews();
+
+    /**
+     * 初始化Data
+     */
+    protected abstract void initData();
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar() {
+        toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+    }
+
+    /**
+     * 获取布局id
+     * @return layoutId
+     */
+    protected abstract int getContentLayoutId();
+
+    /**
+     * 是否需要toolbar
+     * @return true or false
+     */
+    protected abstract boolean isNeedToolbar();
 
     protected void showToast(String text){
         activity.showToast(text);

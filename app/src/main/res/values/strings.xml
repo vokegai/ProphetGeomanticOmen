@@ -9,4 +9,16 @@
     <string name="text_login_btn">登录</string>
     <string name="text_login_forget_psd">忘记密码</string>
     <string name="text_login_sign">立即注册</string>
+    <string name="title_activity_index">IndexActivity</string>
+    <string name="text_index_home_tab">首页</string>
+    <string name="text_index_discover_tab">发现</string>
+    <string name="text_index_shop_tab">商城</string>
+    <string name="text_index_mine_tab">我</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_hot">最火</string>
+    <string name="text_local">本地</string>
+    <string name="text_all">全部</string>
+
 </resources>

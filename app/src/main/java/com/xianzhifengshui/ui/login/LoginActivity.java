@@ -1,5 +1,8 @@
 package com.xianzhifengshui.ui.login;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,17 +18,20 @@ import com.xianzhifengshui.R;
 import com.xianzhifengshui.base.BaseActivity;
 
 /**
- * 用户登录页面
+ * 作者: 陈冠希
+ * 日期: 2016/10/9.
+ * 描述: 用户登录页
  */
 public class LoginActivity extends BaseActivity implements LoginContract.View,View.OnClickListener {
 
+    /*======= 控件声明区 =======*/
     private EditText userNameEt;
     private EditText passwordEt;
     private Button loginBtn;
     private ImageButton backBtn;
     private TextView forgetPwdBtn;
     private TextView signBtn;
-
+    /*========================*/
     private LoginContract.Presenter presenter;
 
     @Override
@@ -35,11 +41,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View,Vi
         initViews();
     }
 
-    private void initData() {
+    @Override
+    protected void initData() {
         presenter = new LoginPresenter(this);
     }
 
-    private void initViews() {
+    @Override
+    protected void initViews() {
         backBtn = (ImageButton) findViewById(R.id.btn_login_back);
         userNameEt = (EditText) findViewById(R.id.edit_username_login);
         passwordEt = (EditText) findViewById(R.id.edit_password_login);
@@ -52,6 +60,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View,Vi
         signBtn.setOnClickListener(this);
     }
 
+    public static void launcher(Context context){
+        Intent intent = new Intent(context,LoginActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_login;
@@ -62,9 +75,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View,Vi
     protected boolean isNeedToolbar() {
         return false;
     }
-
-
-
 
     @Override
     public void onClick(View v) {

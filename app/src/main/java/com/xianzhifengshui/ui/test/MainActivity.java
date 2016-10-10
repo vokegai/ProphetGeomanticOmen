@@ -30,6 +30,11 @@ public class MainActivity extends BaseActivity implements TestContract.View{
     }
 
     @Override
+    protected void initViews() {
+
+    }
+
+    @Override
     protected int getContentLayoutId() {
         return R.layout.activity_main;
     }
@@ -39,10 +44,11 @@ public class MainActivity extends BaseActivity implements TestContract.View{
         return false;
     }
 
-    private void initViews(){
+
+    @Override
+    protected void initData() {
 
     }
-
 
 
     @Override

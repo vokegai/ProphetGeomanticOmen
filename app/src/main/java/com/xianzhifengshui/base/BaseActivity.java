@@ -34,26 +34,34 @@ public abstract   class BaseActivity extends AutoLayoutActivity {
 
     protected Toolbar toolbar;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentLayoutId());
         init();
+        initData();
+        initViews();
+
         if (needToolbar){
             initToolbar();
         }
 
     }
 
+    /**
+     * 初始化View
+     */
+    protected abstract void initViews();
+
+    /**
+     * 初始化Data
+     */
+    protected abstract void initData();
+
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
     }
-
-
 
     private void init() {
         TAG = getClass().getSimpleName();

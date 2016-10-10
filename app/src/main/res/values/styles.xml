@@ -4,7 +4,9 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>
     </style>
+
 
     <style name="NormalDialogStyle">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -31,6 +33,9 @@
     <style name="normalDialogAnim" parent="android:Animation">
         <item name="@android:windowEnterAnimation">@anim/normal_dialog_enter</item>
         <item name="@android:windowExitAnimation">@anim/normal_dialog_exit</item>
+    </style>
+    <style name="LargerTabLayoutTextStyle">
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>
