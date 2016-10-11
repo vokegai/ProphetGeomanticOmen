@@ -20,7 +20,7 @@ public class XImageLoader extends ImageLoader {
 
 
 
-    public static ImageLoader getInstance() {
+    public static XImageLoader getInstance() {
         if(instance == null) {
             synchronized(XImageLoader.class) {
                 if(instance == null) {
@@ -34,8 +34,8 @@ public class XImageLoader extends ImageLoader {
     protected XImageLoader(){
         imageLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.webdefault_icon)
-                .showImageOnFail(R.mipmap.webdefault_icon)
+                .showImageOnLoading(R.drawable.webdefault_icon)
+                .showImageOnFail(R.drawable.webdefault_icon)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)

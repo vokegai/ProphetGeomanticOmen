@@ -1,11 +1,9 @@
 package com.xianzhifengshui.adapter;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import com.xianzhifengshui.base.BaseFragment;
-import com.xianzhifengshui.common.CommenPagerAdapter;
+import com.xianzhifengshui.common.PagerAdapter;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ import java.util.List;
  * 日期: 2016/10/10.
  * 描述: TabViewPagerAdapter
  */
-public class TabPagerAdapter extends CommenPagerAdapter{
+public class TabPagerAdapter extends PagerAdapter {
     private String[] titles;
 
     public TabPagerAdapter(FragmentManager fm, String[] titles, List<BaseFragment> fragments) {

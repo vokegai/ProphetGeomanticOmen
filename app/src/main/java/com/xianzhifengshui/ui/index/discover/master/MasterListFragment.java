@@ -6,9 +6,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xianzhifengshui.R;
+import com.xianzhifengshui.adapter.MasterListAdapter;
 import com.xianzhifengshui.base.BaseFragment;
 import com.xianzhifengshui.widget.pull2refresh.PullToRefreshBase;
 import com.xianzhifengshui.widget.pull2refresh.PullToRefreshRecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 作者: 陈冠希
@@ -28,6 +32,8 @@ public class MasterListFragment extends BaseFragment implements PullToRefreshBas
     TextView localBtn;
     TextView allBtn;
     /*=========================*/
+
+    MasterListAdapter adapter;
     @Override
     protected void initViews() {
         pullToRefreshRecyclerView = (PullToRefreshRecyclerView) rootView.findViewById(R.id.recyclerView);
@@ -40,11 +46,17 @@ public class MasterListFragment extends BaseFragment implements PullToRefreshBas
         hotBtn.setOnClickListener(this);
         localBtn.setOnClickListener(this);
         allBtn.setOnClickListener(this);
+        pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     protected void initData() {
-
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(""+i);
+        }
+        adapter = new MasterListAdapter(getContext(),R.layout.item_master_list,list);
     }
 
     @Override

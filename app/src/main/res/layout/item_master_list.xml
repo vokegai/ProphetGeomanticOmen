@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="40px"
+    android:paddingRight="40px">
+    <ImageView
+        android:id="@+id/image_master_list_icon"
+        app:layout_auto_baseheight="width"
+        android:layout_width="188px"
+        android:layout_height="188px"
+        android:scaleType="fitXY"
+        android:src="@drawable/webdefault_icon"
+        android:layout_marginTop="20px"/>
+    <TextView
+        android:id="@+id/text_master_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_normal"
+        android:layout_toRightOf="@id/image_master_list_icon"
+        android:layout_marginTop="25px"
+        android:layout_marginLeft="33px"
+        android:text="张三丰"
+        />
+    <LinearLayout
+        android:id="@+id/layout_master_list_tag"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_master_list_title"
+        android:layout_alignLeft="@id/text_master_list_title"
+        android:layout_marginTop="30px"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_small"
+        android:layout_below="@id/layout_master_list_tag"
+        android:layout_alignLeft="@id/layout_master_list_tag"
+        android:layout_marginTop="29px"
+        android:text="张三丰温室派传世人，无党派祖师，著啊啊啊啊啊啊啊啊啊有《资治通鉴》啊是是所啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊的"/>
+
+
+
+</RelativeLayout>

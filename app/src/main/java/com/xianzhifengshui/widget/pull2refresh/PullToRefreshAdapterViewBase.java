@@ -90,7 +90,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	/**
 	 * Gets whether an indicator graphic should be displayed when the View is in
 	 * a state where a Pull-to-Refresh can happen. An example of this state is
-	 * when the Adapter View is scrolled to the top and the mode is set to
+	 * when the CommonRecyclerAdapter View is scrolled to the top and the mode is set to
 	 * {@link Mode#PULL_FROM_START}. The default value is <var>true</var> if
 	 * {@link PullToRefreshBase#isPullToRefreshOverScrollEnabled()
 	 * isPullToRefreshOverScrollEnabled()} returns false.
@@ -148,14 +148,14 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	 * {@link AdapterView#setAdapter(Adapter)}
 	 * setAdapter(adapter)}. This is just for convenience!
 	 * 
-	 * @param adapter - Adapter to set
+	 * @param adapter - CommonRecyclerAdapter to set
 	 */
 	public void setAdapter(ListAdapter adapter) {
 		((AdapterView<ListAdapter>) mRefreshableView).setAdapter(adapter);
 	}
 
 	/**
-	 * Sets the Empty View to be used by the Adapter View.
+	 * Sets the Empty View to be used by the CommonRecyclerAdapter View.
 	 * <p/>
 	 * We need it handle it ourselves so that we can Pull-to-Refresh when the
 	 * Empty View is shown.
@@ -225,7 +225,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	/**
 	 * Sets whether an indicator graphic should be displayed when the View is in
 	 * a state where a Pull-to-Refresh can happen. An example of this state is
-	 * when the Adapter View is scrolled to the top and the mode is set to
+	 * when the CommonRecyclerAdapter View is scrolled to the top and the mode is set to
 	 * {@link Mode#PULL_FROM_START}
 	 * 
 	 * @param showIndicator - true if the indicators should be shown.

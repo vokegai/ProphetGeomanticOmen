@@ -11,12 +11,12 @@ import java.util.List;
 /**
  * 作者: 陈冠希
  * 日期: 2016/10/10.
- * 描述: ViewPagerAdapter
+ * 描述: 通用的PagerAdapter
  */
-public class CommenPagerAdapter extends FragmentPagerAdapter {
+public class PagerAdapter extends FragmentPagerAdapter {
     private List<BaseFragment> fragments;
 
-    public CommenPagerAdapter(FragmentManager fm,List<BaseFragment> fragments) {
+    public PagerAdapter(FragmentManager fm, List<BaseFragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }
