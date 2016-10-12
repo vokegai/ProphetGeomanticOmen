@@ -8,13 +8,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize">
+        android:paddingTop="30px"
+        android:paddingBottom="30px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        android:background="@color/white_dark"
+        >
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_larger"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:text=""/>

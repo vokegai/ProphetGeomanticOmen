@@ -17,7 +17,7 @@
             android:gravity="center"
             android:layout_height="match_parent"
             android:textColor="@drawable/selector_tab_text_color"
-            android:textSize="@dimen/text_size_normal"
+            android:textSize="@dimen/text_size_small"
             android:text="@string/text_hot"/>
         <TextView
             android:id="@+id/btn_master_list_local"
@@ -26,7 +26,7 @@
             android:gravity="center"
             android:layout_height="match_parent"
             android:textColor="@drawable/selector_tab_text_color"
-            android:textSize="@dimen/text_size_normal"
+            android:textSize="@dimen/text_size_small"
             android:text="@string/text_local"/>
         <TextView
             android:id="@+id/btn_master_list_all"
@@ -35,7 +35,7 @@
             android:gravity="center"
             android:layout_height="match_parent"
             android:textColor="@drawable/selector_tab_text_color"
-            android:textSize="@dimen/text_size_normal"
+            android:textSize="@dimen/text_size_small"
             android:text="@string/text_all"/>
     </LinearLayout>
     <include

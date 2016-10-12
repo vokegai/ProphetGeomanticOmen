@@ -21,5 +21,11 @@
     <string name="text_local">本地</string>
     <string name="text_all">全部</string>
     <string name="text_collect">收藏</string>
+    <string name="text_my_master">我的大师</string>
+    <string name="text_my_lecture">我的讲座</string>
+    <string name="text_my_topic">我的话题</string>
+    <string name="text_become_master">成为大师</string>
+    <string name="text_help_and_feedback">帮助与反馈</string>
+    <string name="text_setting">设置</string>
 
 </resources>

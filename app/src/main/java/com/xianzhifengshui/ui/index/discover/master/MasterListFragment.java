@@ -184,7 +184,7 @@ public class MasterListFragment extends BaseFragment implements MasterListContra
 
     @Override
     public boolean isActive() {
-        return activity.isActive;
+        return isActive;
     }
 
     @Override

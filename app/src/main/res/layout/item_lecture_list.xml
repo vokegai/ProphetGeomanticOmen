@@ -11,9 +11,9 @@
         app:layout_auto_baseheight="width"
         android:layout_width="170px"
         android:layout_height="170px"
-        android:src="@drawable/webdefault_icon"
-        android:layout_marginTop="16px"
-        android:layout_marginBottom="16px"/>
+        android:src="@drawable/pic"
+        android:layout_centerVertical="true"
+        />
     <TextView
         android:id="@+id/text_lecture_list_title"
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_smallest"
         android:layout_alignBaseline="@id/text_lecture_list_title"
         android:layout_alignParentRight="true"
         android:text="￥99"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_gray"
-        android:textSize="@dimen/text_size_smaller"
+        android:textSize="@dimen/text_size_smallest"
         android:layout_below="@id/text_lecture_list_title"
         android:layout_marginTop="30px"
         android:layout_toRightOf="@id/image_lecture_list_icon"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_gray"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_smaller"
         android:layout_toRightOf="@id/text_lecture_list_master"
         android:layout_alignBaseline="@id/text_lecture_list_master"
         android:layout_marginLeft="33px"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_smaller"
         android:layout_alignBaseline="@id/text_lecture_list_rank"
         android:layout_alignParentRight="true"
         android:text="余2座"/>
@@ -68,7 +68,7 @@
         android:id="@+id/text_lecture_list_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_smaller"
         android:textColor="@color/black"
         android:layout_toRightOf="@id/image_lecture_list_icon"
         android:layout_below="@id/text_lecture_list_master"
@@ -83,7 +83,7 @@
         android:id="@+id/text_lecture_list_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_smaller"
         android:textColor="@color/black"
         android:layout_toRightOf="@id/text_lecture_list_date"
         android:layout_marginLeft="26px"
@@ -92,18 +92,15 @@
         android:text="9:00"
         />
     <TextView
+        android:id="@+id/text_lecture_list_collect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/text_lecture_list_time"
         android:layout_alignParentRight="true"
         android:drawableRight="@drawable/selector_lecture_list_collect_icon"
         android:drawablePadding="12dp"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_smaller"
         android:textColor="@drawable/selector_index_tab_text_color"
         android:text="@string/text_collect"/>
-
-
-
-
-
-
 </RelativeLayout>

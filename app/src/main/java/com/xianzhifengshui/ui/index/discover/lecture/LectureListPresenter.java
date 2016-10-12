@@ -33,6 +33,7 @@ public class LectureListPresenter extends BasePresenter implements LectureListCo
         for (int i = 0; i < 10; i++) {
             data.add("");
         }
+        if (view.isActive())
         view.showWaiting();
         new Handler().postDelayed(new Runnable() {
             @Override

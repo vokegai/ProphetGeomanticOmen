@@ -1,4 +1,4 @@
-package com.xianzhifengshui.ui.index.discover.master;
+package com.xianzhifengshui.ui.index.discover.topic;
 
 import android.os.Handler;
 
@@ -10,13 +10,13 @@ import java.util.List;
 /**
  * 作者: 陈冠希
  * 日期: 2016/10/12.
- * 描述: 大师列表页控制器
+ * 描述: 讲座列表页控制器
  */
-public class MasterListPresenter extends BasePresenter implements MasterListContract.Presenter{
+public class TopicListPresenter extends BasePresenter implements TopicListContract.Presenter{
 
-    private MasterListContract.View view;
+    private TopicListContract.View view;
 
-    public MasterListPresenter(MasterListContract.View view) {
+    public TopicListPresenter(TopicListContract.View view) {
         this.view = view;
         view.setPresenter(this);
     }
@@ -29,7 +29,7 @@ public class MasterListPresenter extends BasePresenter implements MasterListCont
     @Override
     public void refreshData() {
         final List<String> data = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 7; i++) {
             data.add("");
         }
         if (view.isActive())

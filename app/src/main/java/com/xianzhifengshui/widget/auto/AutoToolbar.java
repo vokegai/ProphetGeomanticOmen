@@ -3,6 +3,7 @@ package com.xianzhifengshui.widget.auto;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -144,5 +145,18 @@ public class AutoToolbar extends Toolbar {
         public LayoutParams(MarginLayoutParams source) {
             super(source);
         }
+
+
+
+    }
+    @Override
+    public void setTitle(CharSequence title){
+        TextView titleView = (TextView) findViewById(R.id.title);
+        titleView.setText(title);
+    }
+
+    @Override
+    public void setTitle(int resId) {
+        setTitle(getContext().getString(resId));
     }
 }

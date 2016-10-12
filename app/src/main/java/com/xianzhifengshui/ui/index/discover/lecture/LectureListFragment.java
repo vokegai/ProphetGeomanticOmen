@@ -88,7 +88,7 @@ public class LectureListFragment extends BaseFragment implements LectureListCont
 
     @Override
     public boolean isActive() {
-        return activity.isActive;
+        return isActive;
     }
 
     @Override

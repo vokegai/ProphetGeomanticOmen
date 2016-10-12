@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableRow;
 
 import com.xianzhifengshui.R;
 import com.xianzhifengshui.utils.SPUtils;
@@ -25,6 +26,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected View rootView;
     protected Toolbar toolbar;
+    protected boolean isActive;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,18 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        isActive = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        isActive = false;
+    }
+
     /**
      * 初始化View
      */
@@ -74,7 +88,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 初始化Toolbar
      */
-    private void initToolbar() {
+    protected void initToolbar() {
         toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
     }
 

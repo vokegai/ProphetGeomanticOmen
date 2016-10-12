@@ -14,6 +14,7 @@ import com.xianzhifengshui.base.BaseFragment;
 import com.xianzhifengshui.ui.index.discover.lecture.LectureListFragment;
 import com.xianzhifengshui.ui.index.discover.master.MasterListFragment;
 import com.xianzhifengshui.ui.index.discover.topic.TopicListFragment;
+import com.xianzhifengshui.widget.auto.AutoTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.List;
 public class DiscoverFragment extends BaseFragment {
 
     /*======= 控件声明区 =======*/
-    TabLayout tabLayout;
+    AutoTabLayout tabLayout;
     ViewPager viewPager;
     /*=========================*/
     List<BaseFragment> fragments;
@@ -36,9 +37,9 @@ public class DiscoverFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        tabLayout = (TabLayout) rootView.findViewById(R.id.tab_discover);
+        tabLayout = (AutoTabLayout) rootView.findViewById(R.id.tab_discover);
         viewPager = (ViewPager) rootView.findViewById(R.id.pager_discover);
-        viewPager.setOffscreenPageLimit(3);
+//        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }

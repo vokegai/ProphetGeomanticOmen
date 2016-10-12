@@ -42,7 +42,7 @@ public class HttpEngine {
         }
         if (client == null) {
             client = new AsyncHttpClient();
-            client.setTimeout(3000 * 10);
+            client.setTimeout(1000 * 10);
             client.addHeader("client", "Android");
             client.addHeader("Accept-Encoding", "gzip");
         }
