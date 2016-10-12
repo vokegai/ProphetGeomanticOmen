@@ -41,4 +41,15 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
     }
 
     public abstract void convert(RecyclerViewHolder holder, T t);
+
+    public void setData(List<T> data) {
+        this.data.clear();
+        this.data.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    public void loadMore(List<T> data){
+        this.data.addAll(data);
+        notifyDataSetChanged();
+    }
 }

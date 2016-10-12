@@ -20,5 +20,6 @@
     <string name="text_hot">最火</string>
     <string name="text_local">本地</string>
     <string name="text_all">全部</string>
+    <string name="text_collect">收藏</string>
 
 </resources>

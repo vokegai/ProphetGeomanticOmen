@@ -11,7 +11,7 @@ import com.xianzhifengshui.utils.StringUtils;
  * 描述: 登录页面控制器
  */
 public class LoginPresenter extends BasePresenter implements LoginContract.Presenter {
-    LoginContract.View view;
+    private LoginContract.View view;
 
     public LoginPresenter(LoginContract.View view) {
         super();
@@ -31,7 +31,7 @@ public class LoginPresenter extends BasePresenter implements LoginContract.Prese
         if (!view.isActive()){
             return;
         }
-        view.showWaitingDialog();
+        view.showWaiting();
         api.userLogin(userName, password, new ActionCallbackListener<User>() {
             @Override
             public void onProgress(long bytesWritten, long totalSize) {
@@ -41,14 +41,14 @@ public class LoginPresenter extends BasePresenter implements LoginContract.Prese
             @Override
             public void onSuccess(User data) {
                 saveLoginInfo(data);
-                view.closeWaitingDialog();
+                view.closeWait();
                 view.showLoginSuccess("登录成功");
 
             }
 
             @Override
             public void onFailure(int errorEvent, String message) {
-                view.closeWaitingDialog();
+                view.closeWait();
                 view.showLoginFalure(message);
             }
         });

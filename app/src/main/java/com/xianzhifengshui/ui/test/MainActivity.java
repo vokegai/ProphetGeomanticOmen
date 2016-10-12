@@ -61,15 +61,7 @@ public class MainActivity extends BaseActivity implements TestContract.View{
         return isActive;
     }
 
-    @Override
-    public void showWaitingDialog() {
-        showWaiting();
-    }
 
-    @Override
-    public void closeWaitingDialog() {
-        closeWait();
-    }
 
 
     @Override

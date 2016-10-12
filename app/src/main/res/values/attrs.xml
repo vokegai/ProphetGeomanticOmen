@@ -78,11 +78,24 @@
         <attr name="ptrDrawableBottom" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="PullToRefreshRecyclerView">
+        <attr name="ptrDividerColor" format="color"/>
+        <attr name="ptrDividerHeight" format="dimension"/>
+        <attr name="ptrSelectorColor" format="color"/>
+    </declare-styleable>
+
     <!-- 标签布局 -->
     <declare-styleable name="TagLayout">
         <attr name="lineSpacing" format="dimension"/>
         <attr name="tagSpacing" format="dimension"/>
         <attr name="columnSize" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_overlay" format="boolean" />
+    </declare-styleable>
+
 
 </resources>

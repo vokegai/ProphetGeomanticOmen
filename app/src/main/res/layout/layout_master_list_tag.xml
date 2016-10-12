@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/text_tag"
         android:textColor="@color/orange"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_smaller"
         android:background="@drawable/shape_orange_strok_corner8"
         android:paddingLeft="13px"
         android:paddingRight="13px"

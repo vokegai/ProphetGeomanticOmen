@@ -4,11 +4,13 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="hint_text_size">24px</dimen>
     <dimen name="btn_text_size">28px</dimen>
-    <dimen name="text_size_small">20px</dimen>
+    <dimen name="text_size_smaller">20px</dimen>
+    <dimen name="text_size_small">22px</dimen>
     <dimen name="text_size_normal">24px</dimen>
     <dimen name="text_size_large">28px</dimen>
     <dimen name="text_size_larger">36px</dimen>
     <dimen name="text_size_largest">38px</dimen>
+    <dimen name="spline_height_normal">1px</dimen>
 
     <dimen name="indicator_right_padding">10dp</dimen>
     <dimen name="indicator_corner_radius">12dp</dimen>

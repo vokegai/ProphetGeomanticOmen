@@ -22,12 +22,12 @@ public interface IView<T> {
     /**
      * 显示WaittingDialog
      */
-    void showWaitingDialog();
+    void showWaiting();
 
     /**
      * 隐藏WaitingDialog
      */
-    void closeWaitingDialog();
+    void closeWait();
 
     /**
      * 显示提示信息

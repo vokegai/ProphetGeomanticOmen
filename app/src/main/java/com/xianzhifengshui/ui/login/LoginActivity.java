@@ -123,15 +123,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View,Vi
         return isActive;
     }
 
-    @Override
-    public void showWaitingDialog() {
-        showWaiting();
-    }
-
-    @Override
-    public void closeWaitingDialog() {
-        closeWait();
-    }
 
     @Override
     public void showTip(String text) {

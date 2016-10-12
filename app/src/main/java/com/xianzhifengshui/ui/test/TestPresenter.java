@@ -32,19 +32,19 @@ public class TestPresenter extends BasePresenter implements TestContract.Present
                 if (!view.isActive()){
                     return;
                 }
-                view.showWaitingDialog();
+                view.showWaiting();
             }
 
             @Override
             public void onSuccess(User data) {
                 view.showLoginSuccess(data.toString());
-                view.closeWaitingDialog();
+                view.closeWait();
             }
 
             @Override
             public void onFailure(int errorEvent, String message) {
                 view.showLoginFalure(message);
-                view.closeWaitingDialog();
+                view.showWaiting();
             }
         });
     }
@@ -55,18 +55,18 @@ public class TestPresenter extends BasePresenter implements TestContract.Present
             @Override
             public void onProgress(long bytesWritten, long totalSize) {
                 if (view.isActive())
-                view.showWaitingDialog();
+                view.showWaiting();
             }
 
             @Override
             public void onSuccess(BaseListModel<ArrayList<User>> data) {
                 view.showGetMasterListSuccess(data.toString());
-                view.closeWaitingDialog();
+                view.closeWait();
             }
 
             @Override
             public void onFailure(int errorEvent, String message) {
-                view.closeWaitingDialog();
+                view.showWaiting();
                 view.showTip(message);
             }
         });
