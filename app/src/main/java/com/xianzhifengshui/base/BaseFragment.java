@@ -108,11 +108,11 @@ public abstract class BaseFragment extends Fragment {
         activity.showToast(text);
     }
 
-    protected void showWaiting(){
+    public void showWaiting(){
         activity.showWaiting();
     }
 
-    protected void closeWait(){
+    public void closeWait(){
         activity.closeWait();
     }
 

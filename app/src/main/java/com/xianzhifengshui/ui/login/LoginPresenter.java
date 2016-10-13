@@ -1,8 +1,12 @@
 package com.xianzhifengshui.ui.login;
 
+import android.content.Context;
+
 import com.xianzhifengshui.api.model.User;
 import com.xianzhifengshui.api.net.ActionCallbackListener;
+import com.xianzhifengshui.base.AppConfig;
 import com.xianzhifengshui.base.BasePresenter;
+import com.xianzhifengshui.utils.SPUtils;
 import com.xianzhifengshui.utils.StringUtils;
 
 /**
@@ -48,6 +52,7 @@ public class LoginPresenter extends BasePresenter implements LoginContract.Prese
 
             @Override
             public void onFailure(int errorEvent, String message) {
+
                 view.closeWait();
                 view.showLoginFalure(message);
             }
@@ -56,6 +61,7 @@ public class LoginPresenter extends BasePresenter implements LoginContract.Prese
 
 
     public void saveLoginInfo(User user) {
-
+        SPUtils sp = new SPUtils((Context)view, AppConfig.SP_NAME);
+        sp.putBoolean("isLogin",true);
     }
 }

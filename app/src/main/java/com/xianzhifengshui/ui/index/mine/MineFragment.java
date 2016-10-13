@@ -5,17 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.xianzhifengshui.R;
 import com.xianzhifengshui.base.BaseFragment;
 import com.xianzhifengshui.ui.login.LoginActivity;
+import com.xianzhifengshui.widget.CircleImageView;
 
 /**
  * 作者: 陈冠希
  * 日期: 2016/10/10.
  * 描述: 个人中心页
  */
-public class MineFragment extends BaseFragment implements View.OnClickListener {
+public class MineFragment extends BaseFragment implements View.OnClickListener,MineContract.View {
 
     /*======= 控件声明区 =======*/
     private RelativeLayout loginBtn;
@@ -25,7 +27,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private RelativeLayout becomeMasterBtn;
     private RelativeLayout helpBtn;
     private RelativeLayout settingBtn;
+    private CircleImageView avatarImage;
+    private TextView nickNameText;
+    private TextView userNameText;
     /*=========================*/
+
+    private MineContract.Presenter presenter;
 
     @Override
     protected void initViews() {
@@ -36,6 +43,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         becomeMasterBtn = (RelativeLayout) rootView.findViewById(R.id.btn_mine_become_master);
         helpBtn = (RelativeLayout) rootView.findViewById(R.id.btn_mine_help);
         settingBtn = (RelativeLayout) rootView.findViewById(R.id.btn_mine_setting);
+        avatarImage = (CircleImageView) rootView.findViewById(R.id.image_mine_avatar);
+        userNameText = (TextView) rootView.findViewById(R.id.text_mine_user_name);
+        nickNameText = (TextView) rootView.findViewById(R.id.text_mine_nick_name);
         loginBtn.setOnClickListener(this);
         myMastBtn.setOnClickListener(this);
         myLectureBtn.setOnClickListener(this);
@@ -43,11 +53,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         becomeMasterBtn.setOnClickListener(this);
         helpBtn.setOnClickListener(this);
         settingBtn.setOnClickListener(this);
+        presenter.checkIsLoginUpdateUI(sp);
     }
 
     @Override
     protected void initData() {
-
+        presenter = new MinePresenter(this);
     }
 
     @Override
@@ -62,10 +73,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_mine_login:
-                LoginActivity.launcher(activity);
-                break;
+        if (v.getId() == R.id.btn_mine_setting){
+            //TODO:跳转到设置页面
+
+        }else{
+            presenter.checkIsLoginJump(sp,v.getId());
         }
     }
 
@@ -73,5 +85,65 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     protected void initToolbar() {
         super.initToolbar();
         toolbar.setTitle(R.string.text_index_mine_tab);
+    }
+
+    @Override
+    public void toLoginActivity() {
+        LoginActivity.launcher(getContext());
+    }
+
+    @Override
+    public void showLoginInfo() {
+        nickNameText.setText("屎蛋儿");
+        userNameText.setText("18631565231");
+        avatarImage.setImageResource(R.drawable.pic);
+    }
+
+    @Override
+    public void showDefaultInfo() {
+        nickNameText.setText("点击登录");
+        userNameText.setText("登录后更精彩哦~");
+        avatarImage.setImageResource(R.drawable.avatar_not_login_icon);
+    }
+
+    @Override
+    public void jumpToActivity(int id) {
+        switch (id){
+            case R.id.btn_mine_my_master:
+                //TODO:跳转到我的大师页面
+
+                break;
+            case R.id.btn_mine_my_lecture:
+                //TODO:跳转到我的讲座页面
+
+                break;
+            case R.id.btn_mine_my_topic:
+                //TODO:跳转到我的话题页面
+
+                break;
+            case R.id.btn_mine_become_master:
+                //TODO:跳转到成为大师页面
+
+                break;
+            case R.id.btn_mine_help:
+                //TODO:跳转到帮助反馈页面
+
+                break;
+        }
+    }
+
+    @Override
+    public void setPresenter(MineContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @Override
+    public boolean isActive() {
+        return isActive;
+    }
+
+    @Override
+    public void showTip(String text) {
+        showToast(text);
     }
 }
