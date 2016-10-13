@@ -34,6 +34,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener,M
 
     private MineContract.Presenter presenter;
 
+    public void onEventMainThread(boolean isLogin){
+        presenter.checkIsLoginUpdateUI(sp);
+    }
+
     @Override
     protected void initViews() {
         loginBtn = (RelativeLayout) rootView.findViewById(R.id.btn_mine_login);
@@ -146,4 +150,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener,M
     public void showTip(String text) {
         showToast(text);
     }
+
+
 }

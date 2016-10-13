@@ -60,9 +60,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View,Vi
         signBtn.setOnClickListener(this);
     }
 
-    public static void launcher(Context context){
+    public static void launcher(Activity context,int requestCode,int resultCode){
         Intent intent = new Intent(context,LoginActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,requestCode);
     }
 
     @Override
